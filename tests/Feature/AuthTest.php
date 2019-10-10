@@ -44,10 +44,11 @@ class AuthTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Symfony\Component\HttpKernel\Exception\HttpException
      */
     public function auth_middleware_responds_with_403_on_failure()
     {
+        $this->expectException(\Symfony\Component\HttpKernel\Exception\HttpException::class);
+
         Totem::auth(function () {
             return false;
         });
@@ -61,5 +62,6 @@ class AuthTest extends TestCase
                 return 'response';
             }
         );
+
     }
 }
